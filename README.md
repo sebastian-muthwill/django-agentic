@@ -32,3 +32,19 @@ cp <path-to-plugin>/django-agentic.extras.template.md <your-project>/django-agen
 All agents will automatically load it at runtime and apply it as an override over the
 plugin baseline. Project-level rules always take precedence.
 
+## Using the plugin
+
+Create a new folder `mkdir your-project-folder` and change into it `cd your-project-folder`. From within the folder run you GitHub Copilot CLI and invoke the `project-initialization` skill:
+
+```bash
+/django-agentic:project-initialization
+```
+
+The agent should ask you a few questions about your project and then scaffold a new Django project with the default folder structure, packages, and settings. It will also create a superuser account for you.
+
+Start developing your Django project by invoking the `django-developer` skill for backend feature implementation or the `django-frontend-developer` skill for templates, Bootstrap 5, and HTMX. e.g.:
+
+```bash
+/django-agentic:django-developer Create a new app called "blog" where I can write blog articels that are shown on the home page. The blog should have a title, content, and a publication date. The home page should show a list of all blog articles with their title and publication date.
+```
+
