@@ -1,43 +1,34 @@
 # django-agentic Plugin (GitHub Copilot)
 
-This folder is initialized as a GitHub Copilot plugin workspace for the `django-agentic` plugin.
+This plugin provides a set of skills and agents for Django development, including project initialization, feature development, and debugging.
 
-## Structure
+> **Note:** Currently tested with Github Copilot only! Give it a try and let me know if it works for you. Report an issue if you encounter any problems.
 
-- `plugin.json` — required plugin manifest
-- `skills/` — Django development skills
-- `agents/` — custom agents
-- `references/` — reusable technical references and standards
+## Installing the plugin
 
-## Included
+### In GitHub Copilot CLI
 
-- Skill: `skills/project-initialization/SKILL.md`
-- Skill: `skills/feature-development/SKILL.md`
-- Skill: `skills/debug-fix-issue/SKILL.md`
-- Agents:
-  - `agents/django-software-architect.agent.md` — primary orchestrator
-  - `agents/django-project-initialization.agent.md` — subagent: new project bootstrap
-  - `agents/django-developer.agent.md` — subagent: feature implementation
-  - `agents/django-frontend-developer.agent.md` — subagent: templates, Bootstrap 5, HTMX
-  - `agents/django-tester.agent.md` — subagent: write, run, and fix tests (~60% coverage)
-  - `agents/django-debug.agent.md` — subagent: diagnose bugs, report findings and fix suggestions
-- References:
-  - `references/django-reference-index.md`
-  - `references/django-standards.md`
+
+1. Register the marketplace
+    ```bash
+    copilot plugin marketplace add sebastian-muthwill/django-agentic
+    ```
+
+2. Install the plugin
+    ```bash
+    copilot plugin install django-agentic@django-agentic
+    ```
 
 ## Extending the plugin with project-specific standards
 
-This plugin ships with general-purpose Django standards. For project-specific overrides
-(authentication strategy, deployment target, extra packages, etc.) create a file named
-`django-agentic.extras.md` in the **root of your Django project** (not this plugin folder).
-
-All agents will automatically load it at runtime and apply it as an override over the
-plugin baseline. Project-level rules always take precedence.
-
-Use `django-agentic.extras.template.md` (included in this plugin) as a starting point:
+This plugin ships with general-purpose standards `references/django-standards.md`. 
+For project-specific overrides
+(authentication strategy, deployment target, extra packages, etc.) the agent should offer you to copy the template file `django-agentic.extras.template.md` to your project root so you can edit it. Otherwise copy it yourself:
 
 ```shell
 cp <path-to-plugin>/django-agentic.extras.template.md <your-project>/django-agentic.extras.md
 ```
 
-Then fill in only the sections relevant to your project and delete the rest.
+All agents will automatically load it at runtime and apply it as an override over the
+plugin baseline. Project-level rules always take precedence.
+
