@@ -1,0 +1,12 @@
+{
+  "name": "django-agentic",
+  "description": "GitHub Copilot plugin for Django-focused development skills, agents, and reference material.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sebastian Muthwill"
+  },
+  "license": "MIT",
+  "keywords": ["django", "python", "backend", "rest", "copilot", "plugin"],
+  "agents": "agents/",
+  "skills": ["skills/"]
+}
