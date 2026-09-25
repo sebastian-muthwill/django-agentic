@@ -1,3 +1,4 @@
+! Plugin will change to skill soon !
 # django-agentic Plugin (GitHub Copilot)
 
 This plugin provides a set of skills and agents for Django development, including project initialization, feature development, and debugging.
