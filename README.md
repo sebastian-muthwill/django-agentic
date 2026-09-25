@@ -1,51 +1,60 @@
-! Plugin will change to skill soon !
-# django-agentic Plugin (GitHub Copilot)
+# django-agentic (GitHub Copilot skill)
 
-This plugin provides a set of skills and agents for Django development, including project initialization, feature development, and debugging.
+This repository contains a GitHub Copilot skill for Django development, including project initialization, feature implementation, frontend work, debugging, and QA. The entry point is the root [SKILL.md](SKILL.md), which defines the `django-agentic` skill and its workflow contracts.
 
-> **Note:** Currently tested with Github Copilot only! Give it a try and let me know if it works for you. Report an issue if you encounter any problems.
+> **Note:** This project is intentionally structured as a skill, not a legacy Copilot plugin. Use the skill through GitHub Copilot chat or the appropriate local skill integration for your environment.
 
-## Installing the plugin
+## Using the skill
 
-### In GitHub Copilot CLI
+Add this repository to your Copilot skill setup in the way your environment supports local/custom skills, or keep it in a workspace that Copilot can access. Once available, invoke it in chat with:
 
+```text
+/django-agentic
+```
 
-1. Register the marketplace
-    ```bash
-    copilot plugin marketplace add sebastian-muthwill/django-agentic
-    ```
+You can also start a task directly, for example:
 
-2. Install the plugin
-    ```bash
-    copilot plugin install django-agentic@django-agentic
-    ```
+```text
+/django-agentic Initialize a new Django project in the current directory with SQLite for development and PostgreSQL for production.
+```
 
-## Extending the plugin with project-specific standards
+The skill will walk through the bootstrap questionnaire, scaffold the project, and continue with implementation, debugging, and validation.
 
-This plugin ships with general-purpose standards `references/django-standards.md`. 
-For project-specific overrides
-(authentication strategy, deployment target, extra packages, etc.) the agent should offer you to copy the template file `django-agentic.extras.template.md` to your project root so you can edit it. Otherwise copy it yourself:
+## Project-specific overrides
+
+This skill ships with the general baseline in [references/django-standards.md](references/django-standards.md). For project-specific rules such as auth strategy, deployment target, or extra packages, copy the template in [assets/django-agentic.extras.template.md](assets/django-agentic.extras.template.md) to your project root and save it as `django-agentic.extras.md`:
 
 ```shell
-cp <path-to-plugin>/django-agentic.extras.template.md <your-project>/django-agentic.extras.md
+cp /path/to/django-agentic/assets/django-agentic.extras.template.md /path/to/your-project/django-agentic.extras.md
 ```
 
-All agents will automatically load it at runtime and apply it as an override over the
-plugin baseline. Project-level rules always take precedence.
+The skill will automatically load that file and treat it as an override over the baseline rules. Project-level settings always take precedence.
 
-## Using the plugin
+## Example workflows
 
-Create a new folder `mkdir your-project-folder` and change into it `cd your-project-folder`. From within the folder run you GitHub Copilot CLI and invoke the `project-initialization` skill:
+Initialize a project:
 
-```bash
-/django-agentic:project-initialization
+```text
+/django-agentic Create a new Django project named "blogsite" with a custom user model, Bootstrap 5, and HTMX support.
 ```
 
-The agent should ask you a few questions about your project and then scaffold a new Django project with the default folder structure, packages, and settings. It will also create a superuser account for you.
+Implement a feature:
 
-Start developing your Django project by invoking the `django-developer` skill for backend feature implementation or the `django-frontend-developer` skill for templates, Bootstrap 5, and HTMX. e.g.:
-
-```bash
-/django-agentic:django-developer Create a new app called "blog" where I can write blog articels that are shown on the home page. The blog should have a title, content, and a publication date. The home page should show a list of all blog articles with their title and publication date.
+```text
+/django-agentic Add a blog app with a title, content, and publication date. Show the latest posts on the home page and keep the UI clean with Bootstrap styling.
 ```
 
+Debug an issue:
+
+```text
+/django-agentic The home page throws a template error after adding a new model. Diagnose the root cause and fix it with a regression test.
+```
+
+## Repository layout
+
+- [SKILL.md](SKILL.md): skill entry point and orchestration rules
+- [references/django-standards.md](references/django-standards.md): baseline Django rules
+- [references/role-playbooks.md](references/role-playbooks.md): role contracts for workers
+- [assets/django-agentic.extras.template.md](assets/django-agentic.extras.template.md): optional project-level override template
+
+If you run into issues, open a GitHub issue with the exact failure and the Copilot environment you're using.
